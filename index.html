@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine Mother | Sustainable Yoga & Healing Retreat</title>
+    <style>
+        /* CSS Variables - Earth, Water & Geometry Palette */
+        :root {
+            --bg-sand: #F7F5F0;
+            --text-charcoal: #2A2C2A;
+            --accent-terracotta: #C86749;
+            --water-blue: #3A5F7A;
+            --olive-green: #6B705C;
+            --white: #FFFFFF;
+            --font-head: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --spacing-section: 8rem;
+        }
+
+        /* Reset & Basics */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-sand);
+            color: var(--text-charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-head);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        h1 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+        h2 {
+            font-size: clamp(2rem, 3vw, 3rem);
+            color: var(--accent-terracotta);
+            margin-bottom: 2rem;
+        }
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--olive-green);
+        }
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            color: #4A4A4A;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(247, 245, 240, 0.95);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .logo {
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-charcoal);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        .nav-links a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            transition: color 0.4s ease;
+        }
+        .nav-links a:hover {
+            color: var(--accent-terracotta);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes imageFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        /* Reusable Components */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            margin-top: 2rem;
+            background: transparent;
+            border: 1px solid var(--accent-terracotta);
+            color: var(--accent-terracotta);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: var(--accent-terracotta);
+            color: var(--white);
+        }
+        .btn-solid {
+            background: var(--accent-terracotta);
+            color: var(--white);
+            border: 1px solid var(--accent-terracotta);
+        }
+        .btn-solid:hover {
+            background: transparent;
+            color: var(--accent-terracotta);
+        }
+
+        /* Layout */
+        section {
+            padding: var(--spacing-section) 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(42, 44, 42, 0.6), rgba(42, 44, 42, 0.4)), url('https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&q=80') center/cover fixed;
+            padding-top: 5rem;
+        }
+        #hero p {
+            color: var(--white);
+            max-width: 600px;
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            font-weight: 300;
+        }
+        #hero .btn {
+            color: var(--white);
+            border-color: var(--white);
+        }
+        #hero .btn:hover {
+            background: var(--white);
+            color: var(--text-charcoal);
+        }
+
+        /* Vision Section */
+        #vision .sacred-img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 300px 300px 0 0; /* Arched aesthetic */
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+            animation: imageFloat 8s ease-in-out infinite;
+        }
+
+        /* Architecture Section */
+        #architecture {
+            text-align: center;
+        }
+        .arch-intro {
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+        }
+        .arch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            text-align: left;
+        }
+        .arch-card {
+            background: var(--white);
+            padding: 3.5rem 2.5rem;
+            border-top: 4px solid var(--olive-green);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        .arch-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        }
+        .arch-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 60px; height: 60px;
+            background: var(--bg-sand);
+            border-bottom-left-radius: 100%;
+            opacity: 0.5;
+        }
+
+        /* Retreat Experience Section */
+        #experience {
+            /* Handled by grid-2 */
+        }
+        #experience .sacred-img {
+            border-radius: 0 0 300px 300px;
+            height: 500px;
+            width: 100%;
+            object-fit: cover;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+            animation: imageFloat 8s ease-in-out infinite reverse;
+        }
+
+        /* Build in Public Section */
+        #build-wrapper {
+            background: var(--text-charcoal);
+            padding: var(--spacing-section) 5%;
+        }
+        #build {
+            background: var(--text-charcoal);
+            color: var(--bg-sand);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        #build h2 { color: var(--bg-sand); }
+        #build p { color: #A0A0A0; }
+        .terminal {
+            background: #181A18;
+            padding: 2rem;
+            border-radius: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #88C0D0;
+            font-size: 0.95rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid #333;
+        }
+        .terminal .prompt { color: #A3BE8C; }
+
+        /* Astro-Yoga Section */
+        #astro {
+            text-align: center;
+            max-width: 900px;
+        }
+        #astro h2 { color: var(--water-blue); }
+        .mandala-bg {
+            background: radial-gradient(circle at center, rgba(58, 95, 122, 0.05) 0%, transparent 70%);
+            padding: 4rem 0;
+        }
+
+        /* Astro-Yoga Form & Results */
+        .astro-app {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            margin-top: 3rem;
+            text-align: left;
+            border-top: 4px solid var(--water-blue);
+        }
+        .astro-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .astro-app input {
+            padding: 1.25rem;
+            border: 1px solid #E0DCD3;
+            background: var(--bg-sand);
+            font-family: inherit;
+            font-size: 1rem;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+        .astro-app input:focus {
+            outline: none;
+            border-color: var(--water-blue);
+        }
+        #astro-result {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #E0DCD3;
+            display: none;
+        }
+        #astro-result h3 { color: var(--water-blue); font-size: 1.25rem; margin-top: 1.5rem; }
+        #astro-result p { margin-bottom: 1rem; }
+        #astro-result ul { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+        #astro-result li { margin-bottom: 0.5rem; color: #4A4A4A; }
+        .loading-pulse {
+            display: none;
+            margin-top: 2rem;
+            text-align: center;
+            color: var(--water-blue);
+            font-weight: 500;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Contact & Lead Generation */
+        #contact {
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 4rem;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .contact-form input {
+            padding: 1.25rem;
+            border: 1px solid #E0DCD3;
+            background: var(--white);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .contact-form input:focus {
+            outline: none;
+            border-color: var(--accent-terracotta);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 5%;
+            background: var(--white);
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid #EAE6DF;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .grid-2, #build { grid-template-columns: 1fr; gap: 3rem; }
+            #vision .sacred-img, #experience .sacred-img { height: 400px; }
+        }
+        @media (max-width: 768px) {
+            :root { --spacing-section: 5rem; }
+            h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            nav { justify-content: center; }
+            .terminal { font-size: 0.85rem; }
+            .arch-grid { grid-template-columns: 1fr; }
+            .astro-inputs { grid-template-columns: 1fr; }
+        }
+    </style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Divine Mother</div>
+        <div class="nav-links">
+            <a href="#vision">Vision</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#experience">Experience</a>
+            <a href="#build-wrapper">Open Source</a>
+            <a href="#astro">Astro-Yoga</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="fade-in">
+            <h1>Sanctuary of <br>Sacred Functionalism</h1>
+            <p>A Sustainable Yoga & Healing Retreat in Southern Portugal.</p>
+            <a href="#vision" class="btn">Enter the Space</a>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="grid-2">
+        <div class="fade-in">
+            <h2>The Vision</h2>
+            <p>Guided by a deep understanding of Tantra yoga and the natural rhythms of the earth, the retreat embodies the principle of Sacred Functionalism: every form is beautiful, and every beauty serves a purpose.</p>
+            <p>Designed through the mathematical harmony of the Flower of Life, the landscape dissolves the boundary between indoors and outdoors. Here, transformative disciplines—from the stillness of biphasic sleep to the purifying breathwork of Khechari Mudra and 18-hour fasting cycles—are supported by the very architecture that surrounds you.</p>
+            <a href="#architecture" class="btn btn-solid">Explore the Design</a>
+        </div>
+        <div>
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80" alt="Sacred Rammed Earth Architecture" class="sacred-img">
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture">
+        <div class="arch-intro fade-in">
+            <h2>Vāstu-Aligned Architecture</h2>
+            <p>Constructed from the earth itself using rammed earth (taipa), local stone, and reclaimed timber. The masterplan is organized around an open, central Brahmasthan to allow the unhindered flow of prana, ensuring absolute energetic equilibrium across the terrain.</p>
+        </div>
+        <div class="arch-grid fade-in">
+            <div class="arch-card">
+                <h3>The Main House</h3>
+                <p>The anchor of the retreat. Designed with 9 private suites, a sweeping communal kitchen, and a reception area that transitions guests from the outside world into the sanctuary.</p>
+            </div>
+            <div class="arch-card">
+                <h3>The Yoga Dome</h3>
+                <p>A central geodesic marvel engineered for acoustic resonance. This is the heart of the community, serving daily Tantra yoga instruction, sound healing, and meditation.</p>
+            </div>
+            <div class="arch-card">
+                <h3>The Sanctuaries</h3>
+                <p>6 standalone T1 units spread seamlessly into the landscape, providing secluded spaces for deep introspection, alongside a dedicated T3 unit for the resident staff.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Retreat Experience Section -->
+    <section id="experience" class="grid-2">
+        <div>
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80" alt="Healing Water Element" class="sacred-img">
+        </div>
+        <div class="fade-in">
+            <h2>The Healing Landscape</h2>
+            <p>Move through the property along the Spiral Path of Practice, a winding meditation trail that links distinct restorative zones. </p>
+            <p>In the auspicious Northeast, the recovery pond offers a quiet aquatic mirror for contemplation and elemental balance. To the Southeast, the fire circle acts as a natural earthen amphitheater, providing a space for evening gatherings, chanting, and honoring the Agni element.</p>
+        </div>
+    </section>
+
+    <!-- Build in Public Section -->
+    <div id="build-wrapper">
+        <section id="build">
+            <div class="fade-in">
+                <h2>The Open-Source Ashram</h2>
+                <p>We are rejecting the "polished vaporware" approach of traditional real estate. This sanctuary is being engineered transparently, entirely on Pop!_OS Linux.</p>
+                <p>By leveraging FreeCAD for wireframes, Blender for rendering, and Python to procedurally generate the sacred geometry of our structures, we are open-sourcing the architecture of a sanctuary. Follow the raw journey from code execution to pouring the foundations in Portimão.</p>
+                <a href="#contact" class="btn">Join the Crowdfund</a>
+            </div>
+            <div class="terminal fade-in">
+                <span class="prompt">sandro@divinemother:~/divine_env$</span> python3 generate_dome.py<br>
+                > Initializing sacred geometry matrix...<br>
+                > Calculating exact Flower of Life proportions.<br>
+                > Vāstu Shāstra constraints: <span style="color:#A3BE8C;">Verified</span><br>
+                > Generating T1 Unit structural meshes via trimesh...<br>
+                > Exporting DXF blueprints for rendering.<br>
+                > Operation complete. Awaiting material manifestation.
+            </div>
+        </section>
+    </div>
+
+    <!-- Astro-Yoga Section -->
+    <section id="astro" class="fade-in mandala-bg">
+        <h2>Elemental Alignment</h2>
+        <p>Your journey begins before you arrive. Our proprietary Earth-plane natal chart calculator maps your unique energetic signature directly to the landscape of the retreat.</p>
+        <p>Rejecting standard geocentric spherical approximations, our system utilizes true GPS coordinates and exact planetary distances—calculated via the sidereal Lahiri zodiac and whole-sign houses. This uncompromising precision dictates your ideal cabin placement, informs your daily physical practice, and tailors your fasting rhythms to align perfectly with your true elemental nature.</p>
+        
+        <div class="astro-app">
+            <h3 style="color: var(--water-blue); text-align: center; margin-bottom: 0.5rem;">Calculate Your Sanctuary Alignment</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 2rem; text-align: center;">Enter your birth details to dynamically generate your elemental profile and receive architectural placement recommendations within the retreat.</p>
+            <div class="astro-inputs">
+                <input type="text" id="birth-date" placeholder="Birth Date & Time (e.g., Oct 12 1990, 8:00 AM)">
+                <input type="text" id="birth-location" placeholder="Birth City & Country (e.g., Lisbon, PT)">
+            </div>
+            <button id="btn-generate-astro" class="btn btn-solid" style="width: 100%; background: var(--water-blue); border-color: var(--water-blue);">✨ Reveal My Earth-Plane Alignment ✨</button>
+            
+            <div id="astro-loading" class="loading-pulse">Calculating Sidereal Coordinates and Vāstu Intersections...</div>
+            <div id="astro-result"></div>
+        </div>
+    </section>
+
+    <!-- Contact & Lead Generation -->
+    <section id="contact" class="fade-in">
+        <h2>Join the Foundation</h2>
+        <p>Phase One is underway. Enter your email to receive early access to the crowdfunding campaign and your complimentary Earth-plane Astro-Yoga reading.</p>
+        <form class="contact-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit" class="btn btn-solid">Notify Me & Get Reading</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Divine Mother Sustainable Yoga & Healing Retreat. Portimão, Portugal.</p>
+    </footer>
+
+    <!-- Gemini API Integration -->
+    <script>
+        const apiKey = ""; // API Key injected by environment
+
+        async function fetchWithRetry(url, options, maxRetries = 5) {
+            let delays = [1000, 2000, 4000, 8000, 16000];
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return await response.json();
+                } catch (error) {
+                    if (i === maxRetries - 1) throw error;
+                    await new Promise(res => setTimeout(res, delays[i]));
+                }
+            }
+        }
+
+        document.getElementById('btn-generate-astro').addEventListener('click', async () => {
+            const date = document.getElementById('birth-date').value.trim();
+            const location = document.getElementById('birth-location').value.trim();
+            const resultDiv = document.getElementById('astro-result');
+            const loadingDiv = document.getElementById('astro-loading');
+
+            if (!date || !location) {
+                resultDiv.innerHTML = `<p style="color: var(--accent-terracotta); text-align: center; margin-top: 1rem;">Please enter both birth date and location to calculate your alignment.</p>`;
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            // UI State
+            resultDiv.style.display = 'none';
+            loadingDiv.style.display = 'block';
+
+            const promptText = `
+                Based on the birth details provided (Date/Time: ${date}, Location: ${location}), generate a short, personalized "Earth-Plane Astro-Yoga Reading" for a guest visiting the Divine Mother Sustainable Yoga & Healing Retreat. 
+                
+                The retreat focuses on Sacred Functionalism, Tantra yoga, rammed earth Vāstu-aligned architecture, and elements like biphasic sleep, fasting, and Khechari Mudra.
+                
+                Provide a response formatted as standard HTML elements ONLY (using <h3>, <p>, <ul>, <li>, <strong>) without any markdown formatting wrappers like \`\`\`html. Do not include an overall <div> wrapper.
+                Include the following sections precisely:
+                <h3>Your Dominant Element</h3> 
+                <p>A brief poetic description of their energetic makeup (Earth, Water, Fire, Air, or Ether).</p>
+                <h3>Ideal Sanctuary Placement</h3> 
+                <p>Recommend one of our structures (e.g., Northeast Recovery Pond facing, near the Southeast Fire Circle, deep in a T1 rammed earth unit, or near the central Yoga Dome) based on Vāstu principles.</p>
+                <h3>Suggested Daily Practice</h3> 
+                <p>Recommend a specific breathwork, yoga posture, or fasting rhythm aligned with their chart.</p>
+            `;
+
+            const payload = {
+                contents: [{ parts: [{ text: promptText }] }],
+                systemInstruction: {
+                    parts: [{ text: "You are the resident oracle and architect at the Divine Mother Sustainable Yoga Retreat. You speak in a grounded, architectural, and deeply spiritual tone. Respond in raw HTML." }]
+                }
+            };
+
+            try {
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                const result = await fetchWithRetry(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                let generatedHTML = result.candidates?.[0]?.content?.parts?.[0]?.text || "<p>Alignment calculation failed. The cosmic energies are currently obscured. Try again later.</p>";
+                
+                // Remove markdown backticks if the model accidentally includes them
+                generatedHTML = generatedHTML.replace(/```html/g, '').replace(/```/g, '');
+
+                resultDiv.innerHTML = generatedHTML;
+                resultDiv.style.display = 'block';
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                resultDiv.innerHTML = `<p style="color: var(--accent-terracotta); text-align: center; margin-top: 1rem;">Error establishing connection to the astral matrix. Please ensure your API key is configured or try again later.</p>`;
+                resultDiv.style.display = 'block';
+            } finally {
+                loadingDiv.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
